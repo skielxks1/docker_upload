@@ -7,19 +7,19 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 # Instalar pnpm
-RUN corepack enable
+#RUN corepack enable
 
 # Copiar primero solo los archivos de dependencias
-COPY package.json pnpm-lock.yaml ./
+COPY package.json package-lock.json ./
 
 # Instalar las dependencias
-RUN pnpm install --frozen-lockfile
+RUN npm install --frozen-lockfile
 
 # Copiar el codigo del proyecto
 COPY . .
 
 # Ejecutar el proyecto
-RUN pnpm build
+RUN npm build
 
 # ETAPA 2: Produccion
 FROM nginx:alpine AS production
