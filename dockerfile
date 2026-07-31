@@ -19,7 +19,7 @@ RUN npm install --frozen-lockfile
 COPY . .
 
 # Ejecutar el proyecto
-RUN npm build
+RUN npm run build
 
 # ETAPA 2: Produccion
 FROM nginx:alpine AS production
